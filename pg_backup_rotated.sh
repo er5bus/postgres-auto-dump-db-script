@@ -137,7 +137,7 @@ function perform_backups()
   echo -e "\n\nPerforming full backups"
   echo -e "--------------------------------------------\n"
 
-  for DATABASE in `psql -h "$HOSTNAME" -U "$USERNAME" -At -c "$FULL_BACKUP_QUERY" postgres`
+  for DATABASE in `PGPASSWORD="$PASSWORD" psql -h "$HOSTNAME" -U "$USERNAME" -At -c "$FULL_BACKUP_QUERY" postgres`
   do
     if [ $ENABLE_PLAIN_BACKUPS = "yes" ]
     then
